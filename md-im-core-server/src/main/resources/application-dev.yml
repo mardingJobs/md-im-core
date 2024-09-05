@@ -5,7 +5,7 @@ server:
 spring:
   redis:
     database: 0
-    host: localhost
+    host: local.marding.cn
     port: 6379
     password:
     timeout: 30000
@@ -16,7 +16,7 @@ spring:
         max-idle: 8
         min-idle: 0
         max-wait: 5000
-    address: redis://localhost:6379
+    address: redis://local.marding.cn:6379
 
 websocket:
   enable: true
@@ -29,7 +29,7 @@ jwt:
     secret: marding
 
 rocketmq:
-  name-server: localhost:9876
+  name-server: local.marding.cn:9876
   producer:
     group: im-server-group
 
