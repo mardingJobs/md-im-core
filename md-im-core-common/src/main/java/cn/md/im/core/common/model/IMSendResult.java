@@ -15,13 +15,7 @@
  */
 package cn.md.im.core.common.model;
 
-/**
- * @author binghe(微信 : hacker_binghe)
- * @version 1.0.0
- * @description
- * @github https://github.com/binghe001
- * @copyright 公众号: 冰河技术
- */
+
 public class IMSendResult<T> extends TopicMessage {
 
     private static final long serialVersionUID = -1235468585098257903L;

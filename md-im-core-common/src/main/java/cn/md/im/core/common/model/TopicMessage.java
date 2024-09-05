@@ -16,39 +16,27 @@
 package cn.md.im.core.common.model;
 
 
-public class IMUserSession {
 
+public class TopicMessage {
+
+    private static final long serialVersionUID = -6489577536014906245L;
     /**
-     * 用户id
+     * 消息的目的地，可以是消息的主题
      */
-    private Long userId;
+    private String destination;
 
-    /**
-     * 终端类型
-     */
-    private Integer terminal;
-
-    public IMUserSession() {
+    public TopicMessage() {
     }
 
-    public IMUserSession(Long userId, Integer terminal) {
-        this.userId = userId;
-        this.terminal = terminal;
+    public TopicMessage(String destination) {
+        this.destination = destination;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Integer getTerminal() {
-        return terminal;
-    }
-
-    public void setTerminal(Integer terminal) {
-        this.terminal = terminal;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 }
