@@ -7,23 +7,23 @@ package cn.md.im.core.server.model;
  **/
 public class IMMessageHolder<T> {
 
-    private Integer cmd;
+    private Integer type;
     private T data;
 
     public IMMessageHolder() {
     }
 
-    public IMMessageHolder(Integer cmd, T data) {
-        this.cmd = cmd;
+    public IMMessageHolder(Integer type, T data) {
+        this.type = type;
         this.data = data;
     }
 
-    public Integer getCmd() {
-        return cmd;
+    public Integer getType() {
+        return type;
     }
 
-    public void setCmd(Integer cmd) {
-        this.cmd = cmd;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public T getData() {

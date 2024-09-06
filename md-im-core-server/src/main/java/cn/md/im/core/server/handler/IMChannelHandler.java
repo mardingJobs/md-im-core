@@ -1,7 +1,7 @@
 package cn.md.im.core.server.handler;
 
 
-import cn.md.im.core.common.model.IMCmdType;
+import cn.md.im.core.common.model.IMMsgType;
 import cn.md.im.core.server.model.IMMessageHolder;
 import cn.md.im.core.server.processor.MessageProcessor;
 import cn.md.im.core.server.processor.ProcessorFactory;
@@ -34,7 +34,7 @@ public class IMChannelHandler extends SimpleChannelInboundHandler<IMMessageHolde
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, IMMessageHolder msg) throws Exception {
         logger.info("IMChannelHandler channelRead0: {}" ,JSON.toJSONString(msg));
-        MessageProcessor processor = ProcessorFactory.getProcessor(IMCmdType.fromCode(msg.getCmd()));
+        MessageProcessor processor = ProcessorFactory.getProcessor(IMMsgType.fromCode(msg.getType()));
         if (processor == null) {
             logger.error("IMChannelHandler.channelRead0 processor is null,Params:{}",msg);
             return;

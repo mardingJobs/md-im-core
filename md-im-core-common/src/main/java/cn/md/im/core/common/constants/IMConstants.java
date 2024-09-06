@@ -157,4 +157,5 @@ public class IMConstants {
     public final static String  IM_CACHE = "im:cache:";
 
 
+    public static final String MESSAGE_KEY_SPLIT = "";
 }

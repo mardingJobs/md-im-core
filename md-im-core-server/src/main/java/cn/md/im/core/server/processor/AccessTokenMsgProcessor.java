@@ -1,9 +1,9 @@
 package cn.md.im.core.server.processor;
 
-import cn.md.im.core.common.cache.DistributedCache;
+import cn.md.im.core.common.cache.DistributedCacheService;
 import cn.md.im.core.common.constants.IMConstants;
 import cn.md.im.core.common.jwt.JwtUtils;
-import cn.md.im.core.common.model.IMCmdType;
+import cn.md.im.core.common.model.IMMsgType;
 import cn.md.im.core.common.model.IMAccessToken;
 import cn.md.im.core.common.model.IMUserSession;
 import cn.md.im.core.server.cache.UserChannelContextCache;
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,8 +32,8 @@ public class AccessTokenMsgProcessor implements MessageProcessor<IMAccessToken> 
     @Value("${jwt.accessToken.secret}")
     private String accessTokenSecret;
 
-    @Autowired
-    private DistributedCache distributedCache;
+    @Resource
+    private DistributedCacheService distributedCache;
 
 
     @Value("${server.id}")
@@ -69,7 +70,7 @@ public class AccessTokenMsgProcessor implements MessageProcessor<IMAccessToken> 
         }
 
         // 缓存用户客户端连接的哪一个服务，如果用户长时间不操作后，缓存过期了，找不到服务，怎么处理？
-        // 使用IdeleStateHandler，读过期时间要小于缓存过期时间，这样会自动断开链接。
+        // 使用IdleStateHandler，读过期时间要小于缓存过期时间，这样会自动断开链接。
         // 针对断链重试的事情，客户端判断是否是主动断开链接，如果是主动的话，就不需要重新尝试了。
         String userServerKey = String.join(IMConstants.REDIS_KEY_SPLIT,IMConstants.IM_USER_SERVER_ID, userId.toString(), terminal.toString());
         // 设置5分钟超时时间
@@ -77,7 +78,7 @@ public class AccessTokenMsgProcessor implements MessageProcessor<IMAccessToken> 
 
         // 响应ws
         IMMessageHolder<?> holder = new IMMessageHolder<>();
-        holder.setCmd(IMCmdType.LOGIN.code());
+        holder.setType(IMMsgType.LOGIN.code());
         ctx.channel().writeAndFlush(holder);
     }
 

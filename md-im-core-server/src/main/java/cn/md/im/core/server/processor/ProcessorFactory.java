@@ -2,11 +2,11 @@ package cn.md.im.core.server.processor;
 
 
 import cn.md.im.core.server.holder.SpringContextHolder;
-import cn.md.im.core.common.model.IMCmdType;
+import cn.md.im.core.common.model.IMMsgType;
 
 public class ProcessorFactory {
 
-    public static MessageProcessor<?> getProcessor(IMCmdType cmd){
+    public static MessageProcessor<?> getProcessor(IMMsgType cmd){
         switch (cmd){
             //登录
             case LOGIN:

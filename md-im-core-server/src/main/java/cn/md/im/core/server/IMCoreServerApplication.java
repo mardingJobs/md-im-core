@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * * @Date    2024/9/5 19:53
  * * @Description
  **/
-@SpringBootApplication
+
+@SpringBootApplication(scanBasePackages = "cn.md.im")
 public class IMCoreServerApplication {
 
     public static void main(String[] args) {
